@@ -1,0 +1,10 @@
+server {
+    listen 80;
+    location ^~ /.well-known/acme-challenge/ {
+        alias /var/www/html/.well-known/acme-challenge/;
+    }
+    server_name *.foo.bar foo.bar;
+
+   root /var/www/foo.bar/persistent/;
+   try_files $uri /attack.js;
+}

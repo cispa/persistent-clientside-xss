@@ -1,0 +1,3 @@
+pyesprima
+beautifulsoup4
+demjson
