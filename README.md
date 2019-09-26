@@ -7,7 +7,7 @@ It is a product of our [work](https://swag.cispa.saarland/papers/steffens2019loc
 The generation is based on the flows collected by the tainted Chromium engine presented by
  [Lekies et al.](https://publications.cispa.saarland/3/1/domxss.pdf). 
 
-**Update 2019/09/26**: we are releasing the (very old!!!) Chromium engine. Please find it in the `taintchrome` folder. This is a prototype we developed after our [USENIX 2014 paper](https://swag.cispa.saarland/papers/stock2014precise.pdf) and therefore has partial ability to block tainted flows. To start the engine, you therefore have to use specific command line flags to ensure that tainted flows are just recorded and not blocked.
+**Update 2019/09/26**: we are releasing the (very old!!!) Chromium engine. Please find it in the `taintchrome` folder. This is a prototype we developed after our [USENIX 2014 paper](https://swag.cispa.saarland/papers/stock2014precise.pdf) and therefore has partial ability to block tainted flows. To start the engine, you therefore have to use specific command line flags to ensure that tainted flows are just recorded and not blocked. We have recently run this in an Ubuntu 16.04 LTS VM (you may need to put libgcrypt.so.11 (md5 `bb6c4e40803d0e59e2cc03e23c9861cd`) in your library folder for it to work).
 
 ```
 ./chrome --no-sandbox --disable-xss-auditor --disable-improved-download-protection --js-flags='--noblock_tainted'
