@@ -1,3 +1,6 @@
+console.log('Injecting Helper functionality into ', window.location.href);
+var sc = document.createElement('script');
+sc.textContent = '(' + (function(){
 window.getSourcename = function (sourceId) {
     switch (sourceId) {
         case 0:
@@ -39,7 +42,6 @@ window.getSourcename = function (sourceId) {
 
 window.getSourceInfo = function (source, value, start, end) {
     var sourcePart = value.substring(start, end);
-
     if (source === 255) {
         var hasEscaping = 0;
         var hasEncodeURI = 0;
@@ -72,7 +74,7 @@ window.getSourceInfo = function (source, value, start, end) {
 };
 
 window.repackSources = function (value, sources) {
-    let sourceInfo;
+    var sourceInfo;
     var repackedSources = {};
     var oldsource = sources[0];
     var start = 0;
@@ -109,13 +111,15 @@ window.___DOMXSSFinderReport = function (sinkId, value, sources, details, loc) {
     // typically, details contains additional information about a sink. For example, sink ID 1
     // is eval-like sinks, so it would have additional information if instead Function, setTimeout, or setInterval was invoked
     // for details on sink IDs see https://github.com/cispa/persistent-clientside-xss/blob/master/src/constants/sources.py
-
+    var detail1 = details[0];
+    var detail2 = details[1];
+    var detail3=loc;
     var finding = {
-        location: document.location.href.toString(),
+        location: window.location.href,
         domain: document.domain,
         taintedValue: value, // String - value of the (parially) tainted string
         sources: sources, // Array  - byte-wise identification of the sources that composed the string
-        sinkType: sinkType, // ID - eval, innnerHTML, document.write, ...
+        sinkType: sinkId, // ID - eval, innnerHTML, document.write, ...
         sinkDetails: {
             d1: detail1,
             d2: detail2,
@@ -123,7 +127,6 @@ window.___DOMXSSFinderReport = function (sinkId, value, sources, details, loc) {
         }, // String - Context infos how the source was called, value depends on sinkType
         stringID: 0
     };
-
     sinkTypeToName = {
         '1': 'eval',
         '2': 'document.write',
@@ -156,3 +159,7 @@ window.___DOMXSSFinderReport = function (sinkId, value, sources, details, loc) {
     args.unshift(buffer);
     console.log.apply(console, args);
 };
+
+
+}).toString() + ')()';
+document.body.appendChild(sc);

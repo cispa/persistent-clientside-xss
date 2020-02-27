@@ -15,7 +15,7 @@ The generation is based on the flows collected by the tainted Chromium engine pr
 
 **Note that this browser is outdated and Chromium has had known-exploitable bugs in this version. We take absolutely no responsibility for this prototype, neither in terms of functionality nor security. You run this at your own risk**
 
-Whenever a tainted data flow is detected in a sink, the engine tries to locate the function `___DOMXSSFinderReport` in the current window's global scope. We used an extension to inject this code into each page we visited. To get you started, we have put a minimal JavaScript example of the function which can be used to log tainted data flows to the console in the `taintchrome` folder. 
+Whenever a tainted data flow is detected in a sink, the engine tries to locate the function `___DOMXSSFinderReport` in the current window's global scope. We used an extension to inject this code into each page we visited. To get you started, we have put a minimal JavaScript example of the function which can be used to log tainted data flows to the console in the `taintchrome/minimal_extension` folder. 
 
 If you choose to not use the taint engine, check out our examples of such flows, which can be found in the `examples` directory, with EXAMPLE1 being annotated and each other example providing different 
 combinations of sources and sinks.
